@@ -1,22 +1,34 @@
-import { Model, Table, Column, HasMany, PrimaryKey, ForeignKey } from 'sequelize-typescript';
+import {
+  Model,
+  Table,
+  Column,
+  PrimaryKey,
+  ForeignKey,
+  AutoIncrement,
+  DataType,
+  BelongsTo,
+  BelongsToMany,
+  HasMany,
+} from 'sequelize-typescript';
 import { User } from './user.entity';
+import { UserGroup } from './user_group.entity';
 
 @Table
-export class Group extends Model {
-  @PrimaryKey
-  @Column
-  id: number;
+export class Group extends Model<Group> {
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+    primaryKey: true,
+  })
+  id: string;
 
-  @Column
+  @Column({ field: 'name' })
   name: string;
 
-  @Column
+  @Column({ field: 'description' })
   description: string;
 
-  @ForeignKey(() => User)
-  usersIds: number[];
-  
-  @HasMany(() => User)
-  users: User[]
-
+  // @BelongsToMany(() => User, { through: 'User_Group' })
+  @HasMany(() => UserGroup)
+  userGroups: UserGroup[];
 }
