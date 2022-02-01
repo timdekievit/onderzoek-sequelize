@@ -11,7 +11,7 @@ export class SeedService {
 
   async seedUsers() {
 
-    for (let index = 0; index < 1000; index++) {
+    for (let index = 0; index < 10000; index++) {
       const user = await User.create();
 
       user.firstName = 'Tim' + index.toString();
@@ -29,7 +29,7 @@ export class SeedService {
 
   async seedGroups() {
 
-    for (let index = 0; index < 1000; index++) {
+    for (let index = 0; index < 10000; index++) {
       const group = await Group.create();
       const userGroup = await UserGroup.create();
       const userGroup2 = await UserGroup.create();
@@ -38,7 +38,7 @@ export class SeedService {
       group.description = 'groep voor testen' + index.toString();
 
       try {
-        if (index !== 999) {
+        if (index !== 9999) {
           userGroup.userId = this.userArray[index].id;
           userGroup.groupId = group.id;
           userGroup2.userId = this.userArray[index + 1].id;
@@ -59,7 +59,7 @@ export class SeedService {
 
   async seedPhotos() {
 
-    for (let index = 0; index < 1000; index++) {
+    for (let index = 0; index < 10000; index++) {
       const photo = await Photo.create();
       photo.name = 'photo' + index.toString();
       photo.description = 'photo voor testen' + index.toString();
