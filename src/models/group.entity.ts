@@ -28,7 +28,6 @@ export class Group extends Model<Group> {
   @Column({ field: 'description' })
   description: string;
 
-  // @BelongsToMany(() => User, { through: 'User_Group' })
   @HasMany(() => UserGroup)
   userGroups: UserGroup[];
 }
